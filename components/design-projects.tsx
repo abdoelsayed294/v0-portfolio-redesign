@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Palette, FileText, ExternalLink } from "lucide-react"
 
 const designProjects = [
@@ -15,7 +16,7 @@ const designProjects = [
     ],
     image: "/images/evetick-design.jpg",
     viewDesign: "#",
-    caseStudy: "#",
+    caseStudy: "/design/evetick",
   },
   {
     title: "DocNow - Clinic Booking Design",
@@ -24,7 +25,7 @@ const designProjects = [
     tags: ["UI/UX Design", "Figma", "Design System", "Accessibility"],
     image: "/images/docnow-design.jpg",
     viewDesign: "#",
-    caseStudy: null,
+    caseStudy: "/design/docnow",
   },
   {
     title: "LingoSign - Accessibility-First Design",
@@ -38,7 +39,7 @@ const designProjects = [
     ],
     image: "/images/lingosign-design.jpg",
     viewDesign: "#",
-    caseStudy: null,
+    caseStudy: "/design/lingosign",
   },
 ]
 
@@ -113,20 +114,18 @@ export function DesignProjects() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-4 py-2 text-xs font-medium text-primary transition-all hover:bg-primary/20"
                     >
-                      <Palette className="h-3.5 w-3.5" />
-                      View Design
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      View Prototype
                     </a>
                   )}
                   {project.caseStudy && (
-                    <a
+                    <Link
                       href={project.caseStudy}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-4 py-2 text-xs font-medium text-foreground transition-all hover:bg-secondary"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-4 py-2 text-xs font-medium text-primary transition-all hover:bg-primary/15"
                     >
                       <FileText className="h-3.5 w-3.5" />
                       Case Study
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>
