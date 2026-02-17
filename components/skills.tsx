@@ -2,6 +2,7 @@ import {
   Smartphone,
   Database,
   Wrench,
+  Palette,
   Lightbulb,
   Users,
   MessageSquare,
@@ -11,9 +12,15 @@ import {
 
 const technicalSkills = [
   {
-    category: "Frontend",
+    category: "Mobile Development",
     icon: Smartphone,
-    skills: ["Flutter", "Dart", "BLoC / Cubit", "UI/UX Design"],
+    skills: ["Flutter", "Dart", "BLoC / Cubit", "Clean Architecture"],
+  },
+  {
+    category: "Design Tools",
+    icon: Palette,
+    skills: ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing"],
+    highlighted: true,
   },
   {
     category: "Backend & Services",
@@ -54,14 +61,20 @@ export function Skills() {
           <h3 className="mb-8 text-center text-lg font-semibold text-foreground">
             Technical Skills
           </h3>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {technicalSkills.map((group) => (
               <div
                 key={group.category}
-                className="rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40"
+                className={`rounded-xl border p-6 transition-all duration-300 hover:border-primary/40 ${
+                  group.highlighted
+                    ? "border-primary/30 bg-primary/5"
+                    : "border-border bg-card"
+                }`}
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                    group.highlighted ? "bg-primary/20" : "bg-primary/10"
+                  }`}>
                     <group.icon className="h-5 w-5 text-primary" />
                   </div>
                   <h4 className="font-semibold text-foreground">
@@ -72,7 +85,11 @@ export function Skills() {
                   {group.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-md bg-secondary px-3 py-1.5 text-sm text-secondary-foreground"
+                      className={`rounded-md px-3 py-1.5 text-sm ${
+                        group.highlighted
+                          ? "bg-primary/10 text-primary"
+                          : "bg-secondary text-secondary-foreground"
+                      }`}
                     >
                       {skill}
                     </span>

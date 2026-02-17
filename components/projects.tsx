@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { ExternalLink, Play, Construction } from "lucide-react"
+import { ExternalLink, Play, Construction, Palette } from "lucide-react"
 
 const projects = [
   {
@@ -18,6 +18,7 @@ const projects = [
     github: "#",
     demo: "#",
     inDevelopment: false,
+    designedByMe: true,
   },
   {
     title: "DocNow",
@@ -34,6 +35,7 @@ const projects = [
     github: "#",
     demo: null,
     inDevelopment: true,
+    designedByMe: true,
   },
   {
     title: "EveTick",
@@ -44,6 +46,7 @@ const projects = [
     github: "#",
     demo: "#",
     inDevelopment: false,
+    designedByMe: true,
   },
   {
     title: "Store Management System",
@@ -54,6 +57,7 @@ const projects = [
     github: null,
     demo: "#",
     inDevelopment: false,
+    designedByMe: false,
   },
 ]
 
@@ -92,13 +96,21 @@ export function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
 
-                {/* In development badge */}
-                {project.inDevelopment && (
-                  <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-400 backdrop-blur-sm">
-                    <Construction className="h-3 w-3" />
-                    In Development
-                  </div>
-                )}
+                {/* Badges */}
+                <div className="absolute top-4 right-4 flex flex-col gap-2">
+                  {project.inDevelopment && (
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-400 backdrop-blur-sm">
+                      <Construction className="h-3 w-3" />
+                      In Development
+                    </div>
+                  )}
+                  {project.designedByMe && (
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm" title="UI/UX designed by me">
+                      <Palette className="h-3 w-3" />
+                      Designed by me
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Content */}
