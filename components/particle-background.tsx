@@ -2,13 +2,23 @@
 
 import { useEffect, useRef, useCallback } from "react"
 
+const CODE_SYMBOLS = [
+  "{ }", "< />", "//", "=>", "()", "[]", "&&", "||",
+  "!=", "==", "++", "--", "::", "/**", "*/", "#",
+  "fn", "if", "0x", "01", "<>", "/>", "<<", ">>",
+  "...", "?.", "??", "|>", "@", "$", "%", "+=",
+]
+
 interface Particle {
   x: number
   y: number
   vx: number
   vy: number
-  radius: number
+  size: number
   opacity: number
+  symbol: string
+  rotation: number
+  rotationSpeed: number
 }
 
 export function ParticleBackground() {
@@ -18,16 +28,19 @@ export function ParticleBackground() {
   const mouseRef = useRef({ x: -1000, y: -1000 })
 
   const initParticles = useCallback((width: number, height: number) => {
-    const count = Math.floor((width * height) / 12000)
+    const count = Math.floor((width * height) / 15000)
     const particles: Particle[] = []
-    for (let i = 0; i < Math.min(count, 120); i++) {
+    for (let i = 0; i < Math.min(count, 80); i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.5 + 0.5,
-        opacity: Math.random() * 0.4 + 0.1,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        size: Math.random() * 8 + 10,
+        opacity: Math.random() * 0.18 + 0.04,
+        symbol: CODE_SYMBOLS[Math.floor(Math.random() * CODE_SYMBOLS.length)],
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.003,
       })
     }
     return particles
